@@ -5,13 +5,16 @@ import { NaviComponent } from "./components/navi/navi.component";
 import { ProductComponent } from "./components/product/product.component";
 import { HttpClientModule} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { NgFor } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, CategoryComponent, NaviComponent, ProductComponent,],
+  imports: [CommonModule, RouterOutlet, CategoryComponent, NaviComponent, ProductComponent,NgFor],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'] 
 })
 export class AppComponent {
   title = 'my-first-project';
