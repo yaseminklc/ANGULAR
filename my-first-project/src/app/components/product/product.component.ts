@@ -1,50 +1,72 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule} from '@angular/common';
 import { Product } from '../../models/product';
-import { HttpClient } from '@angular/common/http';
-import { ResponseModel } from '../../models/responseModel';
 import { ProductService } from '../../services/product.service';
-import { response } from 'express';
 import { ActivatedRoute } from '@angular/router';
+import { VatAddedPipe } from '../../pipes/vat-added.pipe';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FilterPipePipe } from '../../pipes/filter-pipe.pipe';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../../services/cart.service';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [
+    CommonModule,
+    VatAddedPipe,
+    FilterPipePipe,
+    FormsModule, ReactiveFormsModule,
+    BrowserModule,
+  
+  ],
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css',
+  styleUrls: ['./product.component.css'],
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
-  dataLoaded= false;
-  
-  constructor(private productService:ProductService, private activedRoute:ActivatedRoute) {}
+  dataLoaded = false;
+  filterText: string = '';
+
+  constructor(
+    private productService: ProductService,
+    private activedRoute: ActivatedRoute,
+    private toastr: ToastrService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
-    
-    this.activedRoute.params.subscribe(params=>{
-    if(params["categoryId"]){
-      this.getProductsByCategory(params["categoryId"])
-    }else{
-      this.getProducts()
-    }
-   })
+    this.activedRoute.params.subscribe((params) => {
+      if (params['categoryId']) {
+        this.getProductsByCategory(params['categoryId']);
+      } else {
+        this.getProducts();
+      }
+    });
   }
-   
-   getProducts(){
-this.productService.getProducts().subscribe(response=>{
-  this.products=response.data
-  this.dataLoaded=true;
-})
-   
-   }
 
-   getProductsByCategory(categoryId:number){
-    this.productService.getProductsByCategory(categoryId).subscribe(response=>{
-      this.products=response.data
-      this.dataLoaded=true;
-    })
-       
-       }
+  getProducts() {
+    this.productService.getProducts().subscribe((response) => {
+      this.products = response.data;
+      this.dataLoaded = true;
+    });
+  }
+
+  getProductsByCategory(categoryId: number) {
+    this.productService
+      .getProductsByCategory(categoryId)
+      .subscribe((response) => {
+        this.products = response.data;
+        this.dataLoaded = true;
+      });
+  }
+
+  addToCart(product: Product) {
+    if (product.productId === 1) {
+      this.cartService.addToCart(product);
+    }
+  }
 }

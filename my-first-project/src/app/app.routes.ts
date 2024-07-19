@@ -1,8 +1,8 @@
 import { Routes, RouterModule} from '@angular/router';
 import { ProductComponent } from './components/product/product.component';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { RouterLink } from '@angular/router'
 
 
 export const routes: Routes = [
@@ -13,7 +13,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports:[RouterModule.forRoot(routes)],
+    imports:[RouterModule.forRoot(routes),CommonModule],
     exports:[RouterModule]
 })
 
