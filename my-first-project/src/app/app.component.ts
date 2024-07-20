@@ -19,12 +19,10 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     CategoryComponent,
     NaviComponent,
-   
-    FormsModule, ReactiveFormsModule,
-   
-],
-providers:[],
-
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [],
 })
 export class AppComponent {
   title = 'my-first-project';
