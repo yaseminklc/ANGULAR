@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../../models/category';
 import { CategoryService } from '../../services/category.service';
 import { RouterLink, RouterOutlet } from '@angular/router'
-import { CommonModule} from '@angular/common';
+import { CommonModule, NgFor, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [RouterLink, RouterOutlet, CommonModule],
+  imports: [RouterLink, RouterOutlet, NgFor,NgIf],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })

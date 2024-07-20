@@ -4,8 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { CategoryComponent } from "./components/category/category.component";
 import { NaviComponent } from "./components/navi/navi.component";
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,8 +19,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     CategoryComponent,
     NaviComponent,
-    CommonModule,
+   
     FormsModule, ReactiveFormsModule,
+   
 ],
 providers:[],
 

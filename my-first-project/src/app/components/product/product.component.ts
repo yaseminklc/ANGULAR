@@ -16,11 +16,10 @@ import { BrowserModule } from '@angular/platform-browser';
   selector: 'app-product',
   standalone: true,
   imports: [
-    CommonModule,
     VatAddedPipe,
     FilterPipePipe,
     FormsModule, ReactiveFormsModule,
-    BrowserModule,
+    CommonModule,
   
   ],
   templateUrl: './product.component.html',
